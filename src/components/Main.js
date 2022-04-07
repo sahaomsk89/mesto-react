@@ -1,32 +1,39 @@
-import React from 'react';
-import { api } from '../utils/Api.js'
-import Card from './Card.js';
+import React from "react";
+import { api } from "../utils/Api.js";
+import Card from "./Card.js";
 
 function Main(props) {
-
-  const [userName, setUserName] = React.useState('');
-  const [userDescription, setUserDescription] = React.useState('')
-  const [userAvatar, setUserAvatar] = React.useState('')
-  const [cards, setCards] = React.useState([])
+  const [userName, setUserName] = React.useState("");
+  const [userDescription, setUserDescription] = React.useState("");
+  const [userAvatar, setUserAvatar] = React.useState("");
+  const [cards, setCards] = React.useState([]);
 
   React.useEffect(() => {
     Promise.all([api.getProfile(), api.getInitialCards()])
       .then(([userInfo, cardInfo]) => {
-        setUserName(userInfo.name)
-        setUserDescription(userInfo.about)
-        setUserAvatar(userInfo.avatar)
-        setCards(cardInfo)
+        setUserName(userInfo.name);
+        setUserDescription(userInfo.about);
+        setUserAvatar(userInfo.avatar);
+        setCards(cardInfo);
       })
-      .catch((err) => console.log(err))
-  }, [])
+      .catch((err) => console.log(`Ошибка: ${err}`));
+  }, []);
 
   return (
     <main className="content">
-
       <section className="profile">
         <div className="profile__avatar-wrap">
-          <button className="profile__avatar-overlay" type="button" aria-label="редактировать аватар" onClick={props.onEditAvatar}></button>
-          <img className="profile__avatar" src={userAvatar} alt="Жак-Ив Кусто" />
+          <button
+            className="profile__avatar-overlay"
+            type="button"
+            aria-label="редактировать аватар"
+            onClick={props.onEditAvatar}
+          ></button>
+          <img
+            className="profile__avatar"
+            src={userAvatar}
+            alt="Жак-Ив Кусто"
+          />
         </div>
         <div className="profile__info">
           <div className="profile__text">
@@ -34,12 +41,20 @@ function Main(props) {
             <p className="profile__subtitle">{userDescription}</p>
           </div>
 
-          <button className="profile__edit-button" type="button" aria-label="редактировать место" onClick={props.onEditProfile}>
-          </button>
+          <button
+            className="profile__edit-button"
+            type="button"
+            aria-label="редактировать место"
+            onClick={props.onEditProfile}
+          ></button>
         </div>
 
-        <button className="profile__add-button" type="button" aria-label="добавить место" onClick={props.onAddPlace}>
-        </button>
+        <button
+          className="profile__add-button"
+          type="button"
+          aria-label="добавить место"
+          onClick={props.onAddPlace}
+        ></button>
       </section>
 
       <section className="gallery">
@@ -49,10 +64,6 @@ function Main(props) {
       </section>
     </main>
   );
-
-
 }
 
 export default Main;
-
-
