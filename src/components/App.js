@@ -20,7 +20,7 @@ function App() {
     React.useState(false);
   const [selectedCard, setSelectedCard] = React.useState({});
   const [selectCard, setSelectCard] = React.useState({});
-  const [currentUser, setCurrentUser] = React.useState([]);
+  const [currentUser, setCurrentUser] = React.useState({});
   const [cards, setCards] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(false);
 

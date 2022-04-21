@@ -18,7 +18,6 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser, isLoading }) {
   const currentUser = React.useContext(CurrentUserContext);
 
   // После загрузки текущего пользователя из API
-  // его данные будут использованы в управляемых компонентах.
   React.useEffect(() => {
     setName(currentUser.name);
     setAbout(currentUser.about);
@@ -56,7 +55,6 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser, isLoading }) {
         minLength="2"
         maxLength="40"
         required
-        autocomplete="off"
       />
       <span className="input-name-error popup-form__error"></span>
       <input
@@ -70,7 +68,6 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser, isLoading }) {
         minLength="2"
         maxLength="200"
         required
-        autocomplete="off"
       />
       <span className="input-job-error popup-form__error"></span>
     </PopupWithForm>
